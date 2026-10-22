@@ -1,12 +1,10 @@
 import "dotenv/config";
-import { login } from "../source/api/auth.js";
-import { apiGet } from "../source/api/request.js";
+import { createClient } from "../source/api/client.js";
 
-const sid = await login(
+const client = createClient(
 	process.env["API_URL"]!,
 	process.env["PIHOLE_PASSWORD"]!,
 );
-console.log(`Logged in. Got a SID with ${sid.length} characters.`);
 
-const blocking = await apiGet(process.env["API_URL"]!, sid, "/dns/blocking");
-console.log(blocking);
+console.log(await client.get("/dns/blocking")); // logs in, then requests
+console.log(await client.get("/dns/blocking")); // reuses the same SID, no login

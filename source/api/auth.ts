@@ -13,5 +13,6 @@ export async function login(
 	}
 
 	const data = await response.json();
-	return data.session.sid;
+	const session = data.session;
+	return session.sid;
 }

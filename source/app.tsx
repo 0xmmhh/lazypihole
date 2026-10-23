@@ -1,6 +1,6 @@
-import { Text } from "ink";
 import React from "react";
+import { BlockingStatus } from "./components/BlockingStatus.js";
 
 export default function App() {
-	return <Text>lazypihole</Text>;
+	return <BlockingStatus blocking="enabled" />;
 }
